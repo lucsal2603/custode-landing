@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custode — L'assistente AI per i tuoi affitti brevi</title>
+  <meta name="description" content="Custode risponde ai messaggi dei tuoi ospiti su Airbnb e Booking 24 ore su 24, e ti avvisa solo quando serve una tua decisione." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-soft: #0f172a;
+      --card: #131c30;
+      --line: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #34d399;
+      --accent-soft: rgba(52, 211, 153, 0.12);
+      --amber: #fbbf24;
+      --red: #f87171;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 22px; border-radius: 12px; font-weight: 600; font-size: 15px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn-primary { background: var(--accent); color: #04231a; }
+    .btn-primary:hover { transform: translateY(-2px); background: #4ade80; }
+    .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11,17,32,.82); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+    .logo-mark { width: 32px; height: 32px; border-radius: 9px; background: var(--bg-soft); display: grid; place-items: center; border: 1px solid var(--line); }
+    .nav-cta { display: flex; gap: 12px; align-items: center; }
+    .nav-link { color: var(--muted); font-size: 14px; font-weight: 500; }
+    .nav-link:hover { color: var(--text); }
+
+    /* Hero */
+    .hero { padding: 96px 0 72px; text-align: center; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-soft); color: var(--accent);
+      padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+      margin-bottom: 28px; border: 1px solid rgba(52,211,153,.2);
+    }
+    h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.08; font-weight: 800; letter-spacing: -.02em; }
+    h1 .grad { color: var(--accent); }
+    .sub { font-size: clamp(17px, 2.4vw, 21px); color: var(--muted); max-width: 640px; margin: 24px auto 36px; }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-note { margin-top: 18px; font-size: 13px; color: var(--muted); }
+
+    /* Sections */
+    section { padding: 72px 0; }
+    .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+    h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -.02em; margin: 12px 0 16px; }
+    .lead { color: var(--muted); font-size: 18px; max-width: 620px; }
+    .center { text-align: center; }
+    .center .lead { margin: 0 auto; }
+
+    /* Problem */
+    .prob-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 40px; }
+    .prob {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+    }
+    .prob .ic { font-size: 24px; margin-bottom: 12px; }
+    .prob h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .prob p { color: var(--muted); font-size: 15px; }
+
+    /* How it works */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 44px; }
+    .step {
+      background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px;
+      position: relative; overflow: hidden;
+    }
+    .step .tag {
+      display: inline-flex; padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 700;
+      letter-spacing: .03em; margin-bottom: 16px;
+    }
+    .tag-a { background: var(--accent-soft); color: var(--accent); }
+    .tag-b { background: rgba(251,191,36,.12); color: var(--amber); }
+    .tag-c { background: rgba(248,113,113,.12); color: var(--red); }
+    .step h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 15px; }
+    .step .ex { margin-top: 16px; font-size: 14px; color: var(--text); background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-style: italic; }
+
+    /* Benefits */
+    .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 40px; }
+    .ben { display: flex; gap: 14px; align-items: flex-start; }
+    .ben .check { color: var(--accent); font-size: 20px; flex-shrink: 0; line-height: 1.4; }
+    .ben h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .ben p { color: var(--muted); font-size: 14px; }
+
+    /* Pricing */
+    .price-card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 22px;
+      max-width: 420px; margin: 44px auto 0; padding: 40px 36px; text-align: center;
+      position: relative;
+    }
+    .price-card .amount { font-size: 52px; font-weight: 800; letter-spacing: -.02em; }
+    .price-card .amount span { font-size: 18px; color: var(--muted); font-weight: 500; }
+    .price-card .plist { text-align: left; margin: 28px 0; display: grid; gap: 12px; }
+    .price-card .plist div { display: flex; gap: 10px; align-items: center; color: var(--text); font-size: 15px; }
+    .price-card .plist .c { color: var(--accent); }
+    .price-card .btn { width: 100%; justify-content: center; }
+
+    /* Final CTA */
+    .final { text-align: center; background: linear-gradient(180deg, transparent, var(--bg-soft)); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); padding: 48px 0; }
+    .foot-in { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+    .foot-brand { font-weight: 700; font-size: 16px; }
+    .foot-brand span { color: var(--muted); font-weight: 400; font-size: 14px; display: block; margin-top: 2px; }
+    .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-links a { color: var(--muted); font-size: 14px; }
+    .foot-links a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .hero { padding: 64px 0 48px; }
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap nav-in">
+      <div class="logo">
+        <span class="logo-mark">
+          <svg viewBox="0 0 100 100" width="18" height="18" aria-hidden="true">
+            <path d="M30 62V44l20-14 20 14v18" fill="none" stroke="#34d399" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        Custode
+      </div>
+      <div class="nav-cta">
+        <a class="nav-link" href="#come-funziona">Come funziona</a>
+        <a class="nav-link" href="#prezzo">Prezzo</a>
+        <a class="btn btn-primary" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Prova la demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="pill">● Assistente AI per affitti brevi</span>
+      <h1>Risponde ai tuoi ospiti.<br /><span class="grad">E sa quando chiamarti.</span></h1>
+      <p class="sub">Custode legge i messaggi dei tuoi ospiti su Airbnb e Booking, risponde da solo alle domande di sempre — orari, wifi, parcheggio — e ti avvisa sul telefono solo quando serve una tua decisione.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Prova la demo gratis →</a>
+        <a class="btn btn-ghost" href="#prezzo">Quanto costa</a>
+      </div>
+      <p class="hero-note">Nessuna installazione. Provala in 30 secondi dal browser.</p>
+    </div>
+  </header>
+
+  <section id="problema">
+    <div class="wrap center">
+      <span class="eyebrow">Il problema</span>
+      <h2>Rispondere agli ospiti ti ruba tempo</h2>
+      <p class="lead">Le stesse domande, a tutte le ore. E se rispondi in ritardo, la recensione ne risente.</p>
+      <div class="prob-grid">
+        <div class="prob">
+          <div class="ic">🕐</div>
+          <h3>Messaggi a ogni ora</h3>
+          <p>"A che ora è il check-in?", "Qual è il wifi?" — sempre le stesse, anche di notte.</p>
+        </div>
+        <div class="prob">
+          <div class="ic">⭐</div>
+          <h3>Le risposte lente costano</h3>
+          <p>Gli ospiti si aspettano risposte rapide. Tardare significa recensioni più basse.</p>
+        </div>
+        <div class="prob">
+          <div class="ic">😵</div>
+          <h3>Non puoi essere sempre lì</h3>
+          <p>Lavoro, famiglia, più appartamenti: rispondere a tutto a mano è insostenibile.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="come-funziona" style="background: var(--bg-soft);">
+    <div class="wrap center">
+      <span class="eyebrow">Come funziona</span>
+      <h2>Risponde da solo. Tranne quando conta.</h2>
+      <p class="lead">Custode capisce ogni messaggio e decide cosa fare. Non prende mai impegni al posto tuo.</p>
+      <div class="steps" style="text-align:left;">
+        <div class="step">
+          <span class="tag tag-a">Risponde da solo</span>
+          <h3>Le domande di sempre</h3>
+          <p>Orari, wifi, parcheggio, regole della casa, dintorni: risponde subito, 24/7, con il tuo tono.</p>
+          <p class="ex">"Il check-in è dalle 15:00. Il wifi è 'CasaNeri', password Firenze2024 😊"</p>
+        </div>
+        <div class="step">
+          <span class="tag tag-b">Chiede a te</span>
+          <h3>Le decisioni che ti impegnano</h3>
+          <p>Sconti, check-in fuori orario, ospiti extra: prepara la risposta ma aspetta il tuo "ok".</p>
+          <p class="ex">"L'ospite chiede uno sconto per 5 notti. Vuoi accettare? Ti ho preparato la risposta."</p>
+        </div>
+        <div class="step">
+          <span class="tag tag-c">Ti avvisa subito</span>
+          <h3>I problemi veri</h3>
+          <p>Perdita d'acqua, ospite chiuso fuori, niente acqua calda: rassicura l'ospite e ti manda un alert urgente sul telefono.</p>
+          <p class="ex">"⚠️ Urgente: l'ospite segnala una perdita d'acqua. Ti ho avvisato subito."</p>
+        </div>
+      </div>
+      <p class="lead center" style="margin-top:36px;">E se non sa una risposta? <strong style="color:var(--text)">Non se la inventa</strong> — ti gira la domanda.</p>
+    </div>
+  </section>
+
+  <section id="vantaggi">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">Cosa ottieni</span>
+        <h2>Più tempo, ospiti più felici</h2>
+      </div>
+      <div class="benefits">
+        <div class="ben"><span class="check">✓</span><div><h3>Risposte immediate 24/7</h3><p>Anche di notte, anche mentre dormi o lavori.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Recensioni migliori</h3><p>Ospiti seguiti subito = valutazioni più alte.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Tu decidi le cose importanti</h3><p>Niente sconti o eccezioni senza il tuo via libera.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Alert urgenti sul telefono</h3><p>I problemi veri li sai all'istante, ovunque sei.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Parla la lingua dell'ospite</h3><p>Italiano, inglese e altre lingue, in automatico.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Funziona con i tuoi annunci</h3><p>Si collega ai messaggi di Airbnb e Booking.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prezzo" style="background: var(--bg-soft);">
+    <div class="wrap center">
+      <span class="eyebrow">Prezzo</span>
+      <h2>Semplice e trasparente</h2>
+      <p class="lead">Un prezzo unico, nessuna sorpresa. Disdici quando vuoi.</p>
+      <div class="price-card">
+        <div class="amount">€25<span> / mese</span></div>
+        <p style="color:var(--muted); margin-top:6px;">per appartamento</p>
+        <div class="plist">
+          <div><span class="c">✓</span> Risposte automatiche illimitate</div>
+          <div><span class="c">✓</span> Alert urgenti sul telefono</div>
+          <div><span class="c">✓</span> Configurazione su misura del tuo alloggio</div>
+          <div><span class="c">✓</span> Supporto in italiano</div>
+        </div>
+        <a class="btn btn-primary" href="#contatti">Inizia ora</a>
+        <p style="font-size:13px; color:var(--muted); margin-top:14px;">Prima prova la demo, poi decidi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contatti">
+    <div class="wrap center">
+      <h2>Vuoi vederlo sul tuo alloggio?</h2>
+      <p class="lead center" style="margin-bottom:32px;">Ti mostro Custode con i dati del tuo appartamento, gratis e senza impegno.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:lukesalvemini@gmail.com?subject=Voglio%20provare%20Custode">Scrivimi una mail →</a>
+        <a class="btn btn-ghost" href="https://wa.me/393661434890" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-in">
+      <div class="foot-brand">Custode <span>Realizzato da Luca Salvemini</span></div>
+      <div class="foot-links">
+        <a href="https://lucsal.it/" target="_blank" rel="noopener">lucsal.it</a>
+        <a href="mailto:lukesalvemini@gmail.com">Email</a>
+        <a href="https://wa.me/393661434890" target="_blank" rel="noopener">366 143 4890</a>
+        <a href="https://www.linkedin.com/in/luca-salvemini" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
