@@ -76,9 +76,8 @@
     .sub { font-size: clamp(17px, 2.4vw, 21px); color: var(--muted); max-width: 640px; margin: 24px auto 36px; }
     .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .hero-note { margin-top: 18px; font-size: 13px; color: var(--muted); }
-    .shots { margin-top: 46px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .shots img { width: 100%; max-width: 840px; border: 1px solid var(--line); border-radius: 16px; display: block; }
-    .shots .shot-portrait { max-width: 340px; border-radius: 26px; }
+    .shots { margin-top: 46px; display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; }
+    .shots img { width: 100%; max-width: 300px; border: 1px solid var(--line); border-radius: 28px; display: block; }
 
     /* Sections */
     section { padding: 72px 0; }
@@ -189,7 +188,7 @@
       <p class="hero-note">Nessuna installazione. Provala in 30 secondi dal browser.</p>
       <div class="shots">
         <img src="img-lingue.png" alt="Custode risponde agli ospiti nella loro lingua, in automatico" loading="lazy" />
-        <img src="img-dashboard.png" class="shot-portrait" alt="Il cruscotto di Custode: messaggi gestiti e tempo risparmiato" loading="lazy" />
+        <img src="img-dashboard.png" alt="Il cruscotto di Custode: messaggi gestiti e tempo risparmiato" loading="lazy" />
       </div>
     </div>
   </header>
