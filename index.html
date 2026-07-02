@@ -76,6 +76,16 @@
     .sub { font-size: clamp(17px, 2.4vw, 21px); color: var(--muted); max-width: 640px; margin: 24px auto 36px; }
     .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .hero-note { margin-top: 18px; font-size: 13px; color: var(--muted); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; text-align: left; }
+    .hero-grid .hero-cta { justify-content: flex-start; }
+    .hero-art { display: flex; justify-content: center; }
+    .hero-art svg { width: 100%; max-width: 300px; height: auto; }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 28px; }
+      .hero-grid .hero-cta { justify-content: center; }
+      .hero-art { order: 2; }
+      .hero-art svg { max-width: 260px; }
+    }
 
     /* Sections */
     section { padding: 72px 0; }
@@ -175,15 +185,55 @@
   </nav>
 
   <header class="hero">
-    <div class="wrap">
-      <span class="pill">● Assistente AI per affitti brevi</span>
-      <h1>Risponde ai tuoi ospiti.<br /><span class="grad">E sa quando chiamarti.</span></h1>
-      <p class="sub">Custode legge i messaggi dei tuoi ospiti su Airbnb e Booking, risponde da solo alle domande di sempre — orari, wifi, parcheggio — e ti avvisa sul telefono solo quando serve una tua decisione.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Prova la demo gratis →</a>
-        <a class="btn btn-ghost" href="#prezzo">Quanto costa</a>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="pill">● Assistente AI per affitti brevi</span>
+        <h1>Risponde ai tuoi ospiti.<br /><span class="grad">E sa quando chiamarti.</span></h1>
+        <p class="sub">Custode legge i messaggi dei tuoi ospiti su Airbnb e Booking, risponde da solo alle domande di sempre — orari, wifi, parcheggio — e ti avvisa sul telefono solo quando serve una tua decisione.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Prova la demo gratis →</a>
+          <a class="btn btn-ghost" href="#prezzo">Quanto costa</a>
+        </div>
+        <p class="hero-note">Nessuna installazione. Provala in 30 secondi dal browser.</p>
       </div>
-      <p class="hero-note">Nessuna installazione. Provala in 30 secondi dal browser.</p>
+      <div class="hero-art">
+        <svg viewBox="0 0 380 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="L'agente Custode risponde a un ospite">
+          <rect x="30" y="10" width="320" height="580" rx="40" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+          <rect x="42" y="22" width="296" height="556" rx="30" fill="#0b1220"/>
+          <rect x="160" y="30" width="60" height="8" rx="4" fill="#1e293b"/>
+          <circle cx="64" cy="66" r="9" fill="#34d399"/>
+          <text x="82" y="63" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Custode</text>
+          <text x="82" y="79" font-family="system-ui,sans-serif" font-size="10.5" fill="#64748b">online · risponde da solo</text>
+          <line x1="42" y1="96" x2="338" y2="96" stroke="#1e293b" stroke-width="1"/>
+          <rect x="150" y="112" width="176" height="32" rx="14" fill="#334155"/>
+          <text x="163" y="132" font-family="system-ui,sans-serif" font-size="12.5" fill="#e2e8f0">A che ora è il check-in?</text>
+          <rect x="54" y="156" width="212" height="72" rx="14" fill="#10b981"/>
+          <text x="66" y="178" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">Ciao! Il check-in è dalle 15:00.</text>
+          <text x="66" y="196" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">Se arrivi prima dimmi pure e</text>
+          <text x="66" y="214" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">vediamo cosa possiamo fare.</text>
+          <rect x="54" y="234" width="152" height="18" rx="9" fill="#0f2e26"/>
+          <path d="M63 243 l3 3 l5 -6" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="76" y="247" font-family="system-ui,sans-serif" font-size="10" fill="#34d399">Risposto in automatico</text>
+          <rect x="168" y="266" width="158" height="32" rx="14" fill="#334155"/>
+          <text x="181" y="286" font-family="system-ui,sans-serif" font-size="12.5" fill="#e2e8f0">E la password del wifi?</text>
+          <rect x="54" y="310" width="212" height="54" rx="14" fill="#10b981"/>
+          <text x="66" y="332" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">Rete CasaBella, password</text>
+          <text x="66" y="350" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">sole2024. Buona permanenza!</text>
+          <rect x="54" y="370" width="152" height="18" rx="9" fill="#0f2e26"/>
+          <path d="M63 379 l3 3 l5 -6" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="76" y="383" font-family="system-ui,sans-serif" font-size="10" fill="#34d399">Risposto in automatico</text>
+          <rect x="150" y="402" width="176" height="32" rx="14" fill="#334155"/>
+          <text x="163" y="422" font-family="system-ui,sans-serif" font-size="12.5" fill="#e2e8f0">Thanks! Any early check-in?</text>
+          <rect x="54" y="446" width="212" height="36" rx="14" fill="#10b981"/>
+          <text x="66" y="468" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">Sure! Let me check and get</text>
+          <rect x="54" y="502" width="240" height="20" rx="10" fill="#111e2b"/>
+          <text x="66" y="516" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">Risponde nella lingua dell'ospite · IT, EN, DE…</text>
+          <rect x="54" y="536" width="240" height="34" rx="17" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+          <text x="70" y="557" font-family="system-ui,sans-serif" font-size="12" fill="#475569">Scrivi come ospite…</text>
+          <circle cx="312" cy="553" r="15" fill="#34d399"/>
+          <path d="M306 553 l12 -5 l-4 5 l4 5 z" fill="#04231a"/>
+        </svg>
+      </div>
     </div>
   </header>
 
