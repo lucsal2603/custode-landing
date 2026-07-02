@@ -48,6 +48,15 @@
     .btn-primary:hover { transform: translateY(-2px); background: #4ade80; }
     .btn-ghost { border: 1px solid var(--line); color: var(--text); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-demo { position: relative; animation: demoPulse 2.6s ease-in-out infinite; }
+    .nav-demo:hover { animation: none; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(52,211,153,.35); }
+    .nav-demo .arr { transition: transform .2s ease; }
+    .nav-demo:hover .arr { transform: translateX(4px); }
+    @keyframes demoPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,.5); }
+      70% { box-shadow: 0 0 0 10px rgba(52,211,153,0); }
+    }
+    @media (prefers-reduced-motion: reduce) { .nav-demo { animation: none; } }
 
     /* Nav */
     nav {
@@ -180,7 +189,7 @@
         <a class="nav-link" href="#come-funziona">Come funziona</a>
         <a class="nav-link" href="#prezzo">Prezzo</a>
         <a class="nav-link" href="#faq">FAQ</a>
-        <a class="btn btn-primary" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Prova la demo</a>
+        <a class="btn btn-primary nav-demo" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Prova la demo <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </nav>
