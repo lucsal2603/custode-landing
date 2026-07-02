@@ -168,6 +168,7 @@
       <div class="nav-cta">
         <a class="nav-link" href="#come-funziona">Come funziona</a>
         <a class="nav-link" href="#prezzo">Prezzo</a>
+        <a class="nav-link" href="#faq">FAQ</a>
         <a class="btn btn-primary" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Prova la demo</a>
       </div>
     </div>
@@ -276,6 +277,46 @@
         </div>
         <a class="btn btn-primary" href="#contatti">Inizia ora</a>
         <p style="font-size:13px; color:var(--muted); margin-top:14px;">Prima prova la demo, poi decidi.</p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .faq-item { border-bottom: 1px solid var(--line); padding: 18px 4px; }
+    .faq-item summary { cursor: pointer; font-weight: 600; font-size: 17px; color: var(--text); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; color: var(--accent); font-size: 24px; line-height: 1; flex-shrink: 0; transition: transform .2s; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p { color: var(--muted); margin: 12px 0 0; line-height: 1.65; }
+  </style>
+  <section id="faq">
+    <div class="wrap" style="max-width: 760px;">
+      <div class="center"><span class="eyebrow">FAQ</span><h2>Domande frequenti</h2></div>
+      <div style="margin-top: 28px;">
+        <details class="faq-item">
+          <summary>Serve avere Beds24 o un gestionale?</summary>
+          <p>Se ce l'hai già, colleghiamo Custode in pochi minuti. Se non ce l'hai, pensiamo a tutto noi: il collegamento ai portali (Airbnb, Booking…) è incluso nel prezzo, non devi configurare nulla.</p>
+        </details>
+        <details class="faq-item">
+          <summary>È sicuro far rispondere un'AI ai miei ospiti?</summary>
+          <p>Sì. L'agente risponde da solo solo alle domande semplici (check-in, wifi, orari…). Per sconti, problemi o casi delicati non decide da solo: avvisa te con una notifica e una bozza già pronta, e sei tu a confermare.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Posso metterlo in pausa quando voglio?</summary>
+          <p>Sì, con un clic. In pausa le richieste degli ospiti arrivano direttamente a te, senza nessuna risposta automatica, finché non lo riattivi.</p>
+        </details>
+        <details class="faq-item">
+          <summary>In che lingue risponde?</summary>
+          <p>Nella lingua dell'ospite, in automatico: italiano, inglese, tedesco, francese, spagnolo e altre. Se un ospite scrive in inglese, risponde in inglese.</p>
+        </details>
+        <details class="faq-item">
+          <summary>E se non sa una risposta?</summary>
+          <p>Non inventa mai. Se un'informazione non c'è nella scheda del tuo alloggio, invece di rischiare verifica con te prima di rispondere.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Quanto costa e come disdico?</summary>
+          <p>€39 al mese, con tutti i tuoi alloggi inclusi (quanti ne hai). Nessun vincolo: disdici quando vuoi.</p>
+        </details>
       </div>
     </div>
   </section>
