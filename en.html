@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custode — The AI assistant for your short-term rentals</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="description" content="Custode answers your guests' messages on Airbnb and Booking 24/7, and only alerts you when a decision is yours to make." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Custode — The AI assistant for your short-term rentals" />
+  <meta property="og:description" content="It answers your guests' messages on Airbnb and Booking 24/7, and only alerts you when a decision is needed." />
+  <meta property="og:image" content="https://lucsal2603.github.io/custode-landing/og-image.png" />
+  <meta property="og:url" content="https://lucsal2603.github.io/custode-landing/en.html" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="alternate" hreflang="it" href="https://lucsal2603.github.io/custode-landing/" />
+  <link rel="alternate" hreflang="en" href="https://lucsal2603.github.io/custode-landing/en.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-soft: #0f172a;
+      --card: #131c30;
+      --line: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #34d399;
+      --accent-soft: rgba(52, 211, 153, 0.12);
+      --amber: #fbbf24;
+      --red: #f87171;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+      padding: 13px 22px; border-radius: 12px; font-weight: 600; font-size: 15px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn-primary { background: var(--accent); color: #04231a; }
+    .btn-primary:hover { transform: translateY(-2px); background: #4ade80; }
+    .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-demo { position: relative; animation: demoPulse 2.6s ease-in-out infinite; }
+    .nav-demo:hover { animation: none; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(52,211,153,.35); }
+    .nav-demo .arr { transition: transform .2s ease; }
+    .nav-demo:hover .arr { transform: translateX(4px); }
+    @keyframes demoPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,.5); }
+      70% { box-shadow: 0 0 0 10px rgba(52,211,153,0); }
+    }
+    @media (prefers-reduced-motion: reduce) { .nav-demo { animation: none; } }
+
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11,17,32,.82); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+    .logo-mark { width: 34px; height: 34px; border-radius: 9px; background: #fff; display: grid; place-items: center; border: 1px solid var(--line); }
+    .logo-mark img { display: block; }
+    .nav-cta { display: flex; gap: 12px; align-items: center; }
+    .nav-link { color: var(--muted); font-size: 14px; font-weight: 500; }
+    .nav-link:hover { color: var(--text); }
+
+    .hero { padding: 96px 0 72px; text-align: center; }
+    h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.08; font-weight: 800; letter-spacing: -.02em; }
+    h1 .grad { color: var(--accent); }
+    .sub { font-size: clamp(17px, 2.4vw, 21px); color: var(--muted); max-width: 640px; margin: 24px auto 36px; }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-note { margin-top: 18px; font-size: 13px; color: var(--muted); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; text-align: left; }
+    .hero-grid .hero-cta { justify-content: flex-start; }
+    .hero-art { display: flex; justify-content: center; }
+    .hero-art svg { width: 100%; max-width: 300px; height: auto; }
+    .cf-art { display: block; width: 100%; max-width: 660px; height: auto; margin: 40px auto 0; }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 28px; }
+      .hero-grid .hero-cta { justify-content: center; }
+      .hero-art { order: 2; }
+      .hero-art svg { max-width: 260px; }
+    }
+
+    section { padding: 72px 0; }
+    .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+    h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -.02em; margin: 12px 0 16px; }
+    .lead { color: var(--muted); font-size: 18px; max-width: 620px; }
+    .center { text-align: center; }
+    .center .lead { margin: 0 auto; }
+
+    .prob-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 40px; }
+    .prob { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+    .prob .ic { font-size: 24px; margin-bottom: 12px; }
+    .prob h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .prob p { color: var(--muted); font-size: 15px; }
+
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 44px; }
+    .step { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; position: relative; overflow: hidden; }
+    .step .tag { display: inline-flex; padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; letter-spacing: .03em; margin-bottom: 16px; }
+    .tag-a { background: var(--accent-soft); color: var(--accent); }
+    .tag-b { background: rgba(251,191,36,.12); color: var(--amber); }
+    .tag-c { background: rgba(248,113,113,.12); color: var(--red); }
+    .step h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 15px; }
+    .step .ex { margin-top: 16px; font-size: 14px; color: var(--text); background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-style: italic; }
+
+    .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 40px; }
+    .ben { display: flex; gap: 14px; align-items: flex-start; }
+    .ben .check { color: var(--accent); font-size: 20px; flex-shrink: 0; line-height: 1.4; }
+    .ben h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .ben p { color: var(--muted); font-size: 14px; }
+
+    .price-card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; max-width: 420px; margin: 44px auto 0; padding: 40px 36px; text-align: center; position: relative; }
+    .price-card .amount { font-size: 52px; font-weight: 800; letter-spacing: -.02em; }
+    .price-card .amount span { font-size: 18px; color: var(--muted); font-weight: 500; }
+    .price-card .plist { text-align: left; margin: 28px 0; display: grid; gap: 12px; }
+    .price-card .plist div { display: flex; gap: 10px; align-items: center; color: var(--text); font-size: 15px; }
+    .price-card .plist .c { color: var(--accent); }
+    .price-card .btn { width: 100%; justify-content: center; }
+
+    .final { text-align: center; background: linear-gradient(180deg, transparent, var(--bg-soft)); }
+
+    footer { border-top: 1px solid var(--line); padding: 48px 0; }
+    .foot-in { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+    .foot-brand { font-weight: 700; font-size: 16px; }
+    .foot-brand span { color: var(--muted); font-weight: 400; font-size: 14px; display: block; margin-top: 2px; }
+    .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-links a { color: var(--muted); font-size: 14px; }
+    .foot-links a:hover { color: var(--accent); }
+
+    .faq-item { border-bottom: 1px solid var(--line); padding: 18px 4px; }
+    .faq-item summary { cursor: pointer; font-weight: 600; font-size: 17px; color: var(--text); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; color: var(--accent); font-size: 24px; line-height: 1; flex-shrink: 0; transition: transform .2s; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p { color: var(--muted); margin: 12px 0 0; line-height: 1.65; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 56px 0 40px; }
+      section { padding: 52px 0; }
+      .wrap { padding: 0 20px; }
+      .nav-link { display: none; }
+      .logo { font-size: 17px; }
+      .nav-in { height: 58px; }
+      .nav-cta .btn { padding: 10px 16px; font-size: 13px; }
+      .foot-in { flex-direction: column; align-items: flex-start; gap: 18px; }
+      .price-card { padding: 32px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap nav-in">
+      <div class="logo">
+        <span class="logo-mark">
+          <img src="logo-mark.png" alt="Custode" width="26" height="26" />
+        </span>
+        Custode
+      </div>
+      <div class="nav-cta">
+        <a class="nav-link" href="#how">How it works</a>
+        <a class="nav-link" href="#pricing">Pricing</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+        <a class="nav-link" href="index.html" title="Versione italiana">IT</a>
+        <a class="btn btn-primary nav-demo" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Try the demo <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>It answers your guests.<br /><span class="grad">And knows when to call you.</span></h1>
+        <p class="sub">Custode reads your guests' messages on Airbnb and Booking, answers the everyday questions on its own — times, wifi, parking — and pings your phone only when a decision is yours to make.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://agente-affitti.vercel.app" target="_blank" rel="noopener">Try the free demo →</a>
+          <a class="btn btn-ghost" href="#pricing">See pricing</a>
+        </div>
+        <p class="hero-note">No install. Try it in 30 seconds from your browser.</p>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 380 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Custode agent replies to a guest">
+          <rect x="30" y="12" width="320" height="596" rx="42" fill="#111c30" stroke="#1e293b" stroke-width="2"/>
+          <rect x="42" y="24" width="296" height="572" rx="32" fill="#0b1120"/>
+          <rect x="162" y="34" width="56" height="8" rx="4" fill="#1e293b"/>
+          <circle cx="66" cy="70" r="11" fill="#34d399"/>
+          <path d="M61 70 l4 4 l7 -8" fill="none" stroke="#04231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="86" y="67" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Custode</text>
+          <text x="86" y="83" font-family="system-ui,sans-serif" font-size="10.5" fill="#64748b">online · replies on its own</text>
+          <line x1="42" y1="100" x2="338" y2="100" stroke="#1e293b" stroke-width="1"/>
+          <rect x="150" y="118" width="176" height="32" rx="14" fill="#1e293b"/>
+          <text x="163" y="138" font-family="system-ui,sans-serif" font-size="12.5" fill="#e2e8f0">What time is check-in?</text>
+          <rect x="54" y="162" width="214" height="74" rx="14" fill="#10b981"/>
+          <text x="66" y="184" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">Hi! Check-in is from 3:00 PM.</text>
+          <text x="66" y="202" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">If you arrive earlier let me</text>
+          <text x="66" y="220" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">know and we'll sort it out.</text>
+          <g>
+            <rect x="54" y="242" width="150" height="18" rx="9" fill="#0f2e26"/>
+            <path d="M63 251 l3 3 l5 -6" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="76" y="255" font-family="system-ui,sans-serif" font-size="10" fill="#34d399">Replied automatically</text>
+          </g>
+          <rect x="168" y="274" width="158" height="32" rx="14" fill="#1e293b"/>
+          <text x="181" y="294" font-family="system-ui,sans-serif" font-size="12.5" fill="#e2e8f0">And the wifi password?</text>
+          <rect x="54" y="318" width="214" height="54" rx="14" fill="#10b981"/>
+          <text x="66" y="340" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">Network CasaBella, password</text>
+          <text x="66" y="358" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">sole2024. Enjoy your stay!</text>
+          <rect x="150" y="392" width="176" height="32" rx="14" fill="#1e293b"/>
+          <text x="163" y="412" font-family="system-ui,sans-serif" font-size="12.5" fill="#e2e8f0">Merci ! Un check-in tôt ?</text>
+          <rect x="54" y="436" width="214" height="54" rx="14" fill="#10b981"/>
+          <text x="66" y="458" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">Bien sûr ! Je vérifie avec</text>
+          <text x="66" y="476" font-family="system-ui,sans-serif" font-size="12.5" fill="#04231a">l'hôte et je vous dis vite.</text>
+          <rect x="54" y="520" width="252" height="20" rx="10" fill="#111c30"/>
+          <text x="66" y="534" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">Replies in the guest's language · EN · IT · DE · FR</text>
+          <rect x="54" y="556" width="238" height="34" rx="17" fill="#0b1120" stroke="#1e293b" stroke-width="1"/>
+          <text x="70" y="577" font-family="system-ui,sans-serif" font-size="12" fill="#475569">Write as a guest…</text>
+          <circle cx="312" cy="573" r="15" fill="#34d399"/>
+          <path d="M306 573 l12 -5 l-4 5 l4 5 z" fill="#04231a"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <section id="problem">
+    <div class="wrap center">
+      <span class="eyebrow">The problem</span>
+      <h2>Answering guests eats your time</h2>
+      <p class="lead">The same questions, at all hours. And if you reply late, your rating suffers.</p>
+      <div class="prob-grid">
+        <div class="prob">
+          <div class="ic">🕐</div>
+          <h3>Messages at all hours</h3>
+          <p>"What time is check-in?", "What's the wifi?" — always the same, even at night.</p>
+        </div>
+        <div class="prob">
+          <div class="ic">⭐</div>
+          <h3>Slow replies cost you</h3>
+          <p>Guests expect fast answers. Being late means lower reviews.</p>
+        </div>
+        <div class="prob">
+          <div class="ic">😵</div>
+          <h3>You can't always be there</h3>
+          <p>Work, family, several flats: replying to everything by hand is unsustainable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" style="background: var(--bg-soft);">
+    <div class="wrap center">
+      <span class="eyebrow">How it works</span>
+      <h2>It replies on its own. Except when it matters.</h2>
+      <p class="lead">Custode understands every message and decides what to do. It never commits on your behalf.</p>
+      <div class="steps" style="text-align:left;">
+        <div class="step">
+          <span class="tag tag-a">Replies on its own</span>
+          <h3>The everyday questions</h3>
+          <p>Times, wifi, parking, house rules, the area: it answers instantly, 24/7, in your tone.</p>
+          <p class="ex">"Check-in is from 3:00 PM. The wifi is 'CasaNeri', password Firenze2024 😊"</p>
+        </div>
+        <div class="step">
+          <span class="tag tag-b">Asks you</span>
+          <h3>The decisions that commit you</h3>
+          <p>Discounts, off-hours check-in, extra guests: it drafts the reply but waits for your OK.</p>
+          <p class="ex">"The guest asks for a discount for 5 nights. Want to accept? I've drafted the reply."</p>
+        </div>
+        <div class="step">
+          <span class="tag tag-c">Alerts you right away</span>
+          <h3>The real problems</h3>
+          <p>Water leak, guest locked out, no hot water: it reassures the guest and sends an urgent alert to your phone.</p>
+          <p class="ex">"⚠️ Urgent: the guest reports a water leak. I've notified you right away."</p>
+        </div>
+      </div>
+      <p class="lead center" style="margin-top:36px;">And if it doesn't know an answer? <strong style="color:var(--text)">It doesn't make it up</strong> — it passes the question to you.</p>
+      <svg class="cf-art" viewBox="0 0 720 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Custode dashboard: stats, requests that need you, and automatic replies">
+        <rect x="8" y="8" width="704" height="454" rx="16" fill="#111c30" stroke="#1e293b" stroke-width="2"/>
+        <circle cx="34" cy="40" r="9" fill="#34d399"/>
+        <text x="50" y="45" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#e2e8f0">Custode</text>
+        <circle cx="682" cy="40" r="14" fill="#0b1120"/>
+        <text x="682" y="45" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="middle">L</text>
+        <line x1="24" y1="64" x2="696" y2="64" stroke="#1e293b" stroke-width="1"/>
+        <text x="24" y="88" font-family="system-ui,sans-serif" font-size="11" font-weight="600" letter-spacing="1" fill="#64748b">STATUS</text>
+        <circle cx="92" cy="84" r="4" fill="#34d399"/><text x="102" y="88" font-family="system-ui,sans-serif" font-size="12" fill="#94a3b8">Channel manager connected</text>
+        <circle cx="278" cy="84" r="4" fill="#34d399"/><text x="288" y="88" font-family="system-ui,sans-serif" font-size="12" fill="#94a3b8">Notifications on</text>
+        <circle cx="410" cy="84" r="4" fill="#34d399"/><text x="420" y="88" font-family="system-ui,sans-serif" font-size="12" fill="#34d399">Agent active</text>
+        <text x="24" y="122" font-family="system-ui,sans-serif" font-size="11" font-weight="600" letter-spacing="1" fill="#64748b">YOUR SAVINGS · THIS MONTH</text>
+        <rect x="24" y="132" width="210" height="66" rx="12" fill="#0b1120" stroke="#1e293b"/>
+        <text x="40" y="168" font-family="system-ui,sans-serif" font-size="26" font-weight="700" fill="#e2e8f0">42</text>
+        <text x="40" y="186" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Messages handled</text>
+        <rect x="248" y="132" width="210" height="66" rx="12" fill="#0b1120" stroke="#1e293b"/>
+        <text x="264" y="168" font-family="system-ui,sans-serif" font-size="26" font-weight="700" fill="#34d399">35</text>
+        <text x="264" y="186" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Auto-replies</text>
+        <rect x="472" y="132" width="224" height="66" rx="12" fill="#0b1120" stroke="#1e293b"/>
+        <text x="488" y="168" font-family="system-ui,sans-serif" font-size="26" font-weight="700" fill="#34d399">~4h</text>
+        <text x="488" y="186" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Hours saved</text>
+        <rect x="24" y="216" width="120" height="30" rx="8" fill="#e2e8f0"/>
+        <text x="42" y="235" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#0f172a">Requests</text>
+        <circle cx="122" cy="231" r="9" fill="#0f172a"/><text x="122" y="235" font-family="system-ui,sans-serif" font-size="10" fill="#e2e8f0" text-anchor="middle">1</text>
+        <text x="162" y="235" font-family="system-ui,sans-serif" font-size="12.5" fill="#64748b">Auto-replies</text>
+        <rect x="24" y="262" width="326" height="182" rx="12" fill="#0b1120" stroke="#1e293b"/>
+        <rect x="24" y="262" width="4" height="182" rx="2" fill="#ef4444"/>
+        <rect x="40" y="278" width="70" height="20" rx="10" fill="#3b1518"/>
+        <text x="52" y="292" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#f87171">URGENT</text>
+        <text x="40" y="322" font-family="system-ui,sans-serif" font-size="10.5" fill="#64748b">GUEST MESSAGE</text>
+        <text x="40" y="340" font-family="system-ui,sans-serif" font-size="13" font-style="italic" fill="#cbd5e1">"No hot water in the bathroom!"</text>
+        <text x="40" y="366" font-family="system-ui,sans-serif" font-size="12.5" fill="#e2e8f0">Issue flagged: needs you.</text>
+        <rect x="40" y="392" width="180" height="34" rx="9" fill="#e2e8f0"/>
+        <text x="130" y="414" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="middle">Reply yourself</text>
+        <rect x="230" y="392" width="102" height="34" rx="9" fill="#0b1120" stroke="#1e293b"/>
+        <text x="281" y="414" font-family="system-ui,sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Handled</text>
+        <rect x="366" y="262" width="330" height="182" rx="12" fill="#0b1120" stroke="#1e293b"/>
+        <path d="M386 292 l5 5 l9 -11" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="406" y="296" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#34d399">Replied automatically</text>
+        <rect x="382" y="312" width="298" height="46" rx="10" fill="#111c30"/>
+        <text x="396" y="330" font-family="system-ui,sans-serif" font-size="10.5" fill="#64748b">GUEST</text>
+        <text x="396" y="348" font-family="system-ui,sans-serif" font-size="12.5" fill="#cbd5e1">What time can I check in?</text>
+        <rect x="382" y="366" width="298" height="62" rx="10" fill="#0f2a22"/>
+        <text x="396" y="384" font-family="system-ui,sans-serif" font-size="10.5" fill="#4b9e84">AGENT</text>
+        <text x="396" y="402" font-family="system-ui,sans-serif" font-size="12.5" fill="#d1fae5">Hi! Check-in is from 3:00 PM. If</text>
+        <text x="396" y="419" font-family="system-ui,sans-serif" font-size="12.5" fill="#d1fae5">you arrive earlier, just let me know!</text>
+      </svg>
+    </div>
+  </section>
+
+  <section id="benefits">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">What you get</span>
+        <h2>More time, happier guests</h2>
+      </div>
+      <div class="benefits">
+        <div class="ben"><span class="check">✓</span><div><h3>Instant replies 24/7</h3><p>Even at night, even while you sleep or work.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Better reviews</h3><p>Guests looked after right away = higher ratings.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>You decide what matters</h3><p>No discounts or exceptions without your go-ahead.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Urgent alerts on your phone</h3><p>You know the real problems instantly, wherever you are.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Speaks the guest's language</h3><p>English, Italian and more languages, automatically.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Many flats, one place</h3><p>Manage all your properties from a single dashboard, each with its own info.</p></div></div>
+        <div class="ben"><span class="check">✓</span><div><h3>Works with your listings</h3><p>Connects to your Airbnb and Booking messages.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" style="background: var(--bg-soft);">
+    <div class="wrap center">
+      <span class="eyebrow">Pricing</span>
+      <h2>Simple and transparent</h2>
+      <p class="lead">One price, no surprises. Cancel anytime.</p>
+      <div class="price-card">
+        <div class="amount">€39<span> / month</span></div>
+        <p style="color:var(--muted); margin-top:6px;">All your properties included, however many you have.</p>
+        <div class="plist">
+          <div><span class="c">✓</span> All the properties you want, same price</div>
+          <div><span class="c">✓</span> Unlimited automatic replies</div>
+          <div><span class="c">✓</span> Urgent alerts on your phone</div>
+          <div><span class="c">✓</span> Setup tailored to your property</div>
+          <div><span class="c">✓</span> Replies to guests in their language: English, Italian, German, French, Spanish and more</div>
+          <div><span class="c">✓</span> Personal support</div>
+        </div>
+        <a class="btn btn-primary" href="#contact">Get started</a>
+        <p style="font-size:13px; color:var(--muted); margin-top:14px;">Try the demo first, then decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap" style="max-width: 760px;">
+      <div class="center"><span class="eyebrow">FAQ</span><h2>Frequently asked questions</h2></div>
+      <div style="margin-top: 28px;">
+        <details class="faq-item">
+          <summary>Do I need Beds24 or a channel manager?</summary>
+          <p>If you already have one, we connect Custode in minutes. If you don't, we handle everything: connecting to the portals (Airbnb, Booking…) is included in the price — you set up nothing.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is it safe to let an AI answer my guests?</summary>
+          <p>Yes. The agent only answers simple questions on its own (check-in, wifi, times…). For discounts, problems or sensitive cases it doesn't decide alone: it alerts you with a notification and a ready-made draft, and you confirm.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I pause it whenever I want?</summary>
+          <p>Yes, with one click. While paused, guest requests come straight to you, with no automatic replies, until you turn it back on.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What languages does it reply in?</summary>
+          <p>In the guest's language, automatically: English, Italian, German, French, Spanish and more. If a guest writes in English, it replies in English.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if it doesn't know an answer?</summary>
+          <p>It never makes things up. If some info isn't in your property sheet, it checks with you before replying instead of guessing.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How much is it and how do I cancel?</summary>
+          <p>€39 a month, with all your properties included (however many). No lock-in: cancel anytime.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <div class="wrap center">
+      <h2>Want to see it on your property?</h2>
+      <p class="lead center" style="margin-bottom:32px;">I'll show you Custode with your apartment's details — free and no commitment.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:lukesalvemini@gmail.com?subject=I%20want%20to%20try%20Custode">Email me →</a>
+        <a class="btn btn-ghost" href="https://wa.me/393661434890" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-in">
+      <div class="foot-brand">Custode <span>Built by Luca Salvemini</span></div>
+      <div class="foot-links">
+        <a href="index.html">Italiano</a>
+        <a href="mailto:lukesalvemini@gmail.com">Email</a>
+        <a href="https://wa.me/393661434890" target="_blank" rel="noopener">+39 366 143 4890</a>
+        <a href="https://www.linkedin.com/in/luca-salvemini" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
